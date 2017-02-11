@@ -46,7 +46,7 @@ void fitESpectrum(){
     
     cout<<"The crossing point on x-axis is "<<y0<<" MeV"<<endl;
 
-    // Draw 2 lines to indicate the start and the end of fitting range
+    // Draw 2 lines to indicate the start and the end of the fitting range
     double yStart = fit->GetParameter(0) + fit->GetParameter(1)*eStart;
 
     TLine *l1 = new TLine(eStart,0,eStart,2*yStart);
