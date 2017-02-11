@@ -7,7 +7,7 @@ void fitESpectrum(){
     TH1D *xtalHit;
 
     // Open a new TCanvas named c1
-    TCanvas *c1 = new TCanvas("c1","c1",1800,1200);
+    TCanvas *c1 = new TCanvas("c1","c1",800,600);
 
     // Specify which calo and which crystal here
     int i = 0; // calo 0
@@ -20,6 +20,7 @@ void fitESpectrum(){
     //xtalHit = (TH1D*) file->Get("truthAnalyzer/xtalhit_edep");
 
     // Set some ranges and sizes here for better visualization
+    xtalHit->GetXaxis()->SetTitle("E [MeV]");
     xtalHit->GetXaxis()->SetRangeUser(0,3500);
     xtalHit->GetXaxis()->SetNdivisions(6);
     xtalHit->GetXaxis()->SetLabelSize(0.04);
@@ -58,4 +59,11 @@ void fitESpectrum(){
     // Redraw the fit function until the crossing point
     fit->SetRange(eStart,y0);
     fit->Draw("same");
+ 
+    // Indicating the crossing point value on the TPad
+    TLatex latex;
+    latex.SetTextSize(0.03);
+    latex.SetTextColor(2);
+    latex.DrawLatex(y0, 0.5*yStart, Form("%4.1f MeV",y0));
+
 }
