@@ -1,4 +1,4 @@
-void fitTesting(){
+void fitESpectrum(){
 
     // Read from a root file
     TFile *file = new TFile("gm2ringsim_truth_1.6M.root");
