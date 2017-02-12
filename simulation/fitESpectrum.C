@@ -1,7 +1,7 @@
 void fitESpectrum(){
 
     // Read from a root file
-    TFile *file = new TFile("gm2ringsim_truth_1M.root");
+    TFile *file = new TFile("gm2ringsim_truth_2725k.root");
 
     // Declare a histogram to store xtalHit from the file
     TH1D *xtalHit;
