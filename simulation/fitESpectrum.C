@@ -1,7 +1,7 @@
 void fitESpectrum(){
 
     // Read from a root file
-    TFile *file = new TFile("gm2ringsim_truth_1.6M.root");
+    TFile *file = new TFile("gm2ringsim_truth_1M.root");
 
     // Declare a histogram to store xtalHit from the file
     TH1D *xtalHit;
@@ -17,14 +17,19 @@ void fitESpectrum(){
     xtalHit = (TH1D*) file->Get(Form("truthAnalyzer/calo%.2dxtalHit%.2d",i,j));
 
     // Get all the xtal hits (sum over 1,296 crystals)
-    //xtalHit = (TH1D*) file->Get("truthAnalyzer/xtalhit_edep");
+//   xtalHit = (TH1D*) file->Get("truthAnalyzer/xtalhit_edep");
+
+    // Rebin the x-axis, by default it is 20 MeV/bin, total 150 bins
+    int rebinSize = 2;
+    xtalHit->Rebin(rebinSize);
 
     // Set some ranges and sizes here for better visualization
-    xtalHit->GetXaxis()->SetTitle("E [MeV]");
     xtalHit->GetXaxis()->SetRangeUser(0,3500);
-    xtalHit->GetXaxis()->SetNdivisions(6);
+    xtalHit->GetXaxis()->SetNdivisions(7);
     xtalHit->GetXaxis()->SetLabelSize(0.04);
     xtalHit->GetYaxis()->SetLabelSize(0.04);
+    xtalHit->GetXaxis()->SetTitle("E [MeV]");
+    xtalHit->GetYaxis()->SetTitle(Form("count/%i MeV",20*rebinSize));
 
     // Draw the histogram
     xtalHit->Draw();
