@@ -3,12 +3,12 @@ void plot_xtalHitEnergyDist(){
 
     gStyle->SetOptStat(1110);
     gStyle->SetTitleH(0.1);
-    TFile *file = new TFile("gm2ringsim_truth.root");
+    TFile *file = new TFile("gm2ringsim_truth_32M.root");
 
     TH1D *xtalHit[24][54];
     TPaveStats *st[54];
 
-    for(int i =0 ; i<1; i++){
+    for(int i =0 ; i<24; i++){
 
 	TCanvas *c1 = new TCanvas("c1","c1",1800,1200);
 	c1->Divide(9,6);
@@ -24,12 +24,12 @@ void plot_xtalHitEnergyDist(){
 	    xtalHit[i][j]->SetBinContent(1,0);
 	    xtalHit[i][j]->ResetStats();
 	    cout<<"entries(after): "<<xtalHit[i][j]->GetEntries()<<endl;
-	    xtalHit[i][j]->Rebin(4);
+	    xtalHit[i][j]->Rebin(1);
 	    xtalHit[i][j]->Draw();
 	    xtalHit[i][j]->SetLineColor(1);
 	    xtalHit[i][j]->SetFillColor(5);
-	    xtalHit[i][j]->GetXaxis()->SetRangeUser(0,2000);
-	    xtalHit[i][j]->GetYaxis()->SetRangeUser(0.5,4000);
+	    xtalHit[i][j]->GetXaxis()->SetRangeUser(0,3000);
+	    xtalHit[i][j]->GetYaxis()->SetRangeUser(0.5,40000);
 	    xtalHit[i][j]->GetXaxis()->SetNdivisions(5);
 	    xtalHit[i][j]->GetXaxis()->SetLabelSize(0.06);
 	    xtalHit[i][j]->GetYaxis()->SetLabelSize(0.06);
